@@ -39,34 +39,43 @@ const app = new Vue({
   },
   watch: {
     message: function(input) {
-      const names = input.match(regex1)
-      const numbers = input.match(regex2)
-      const list = []
-      if (names && names.length > 0) {
-        list.push({
-          prop: 'Department',
-          value: this.normalizeDepartment(names[0])
-        })
+      if (input.length > 0) {
+        const names = input.match(regex1)
+        const numbers = input.match(regex2)
+        const list = []
+        if (names && names.length > 0) {
+          list.push({
+            prop: 'Department',
+            value: this.normalizeDepartment(names[0])
+          })
+        }
+        if (numbers && numbers.length > 0) {
+          list.push({
+            prop: 'Course Number',
+            value: numbers[0]
+          })
+        }
+        if (names && names.length > 1) {
+          list.push({
+            prop: 'Semester',
+            value: this.normalizeSemester(names[1])
+          })
+        }
+        if (numbers && numbers.length > 1) {
+          list.push({
+            prop: 'Year',
+            value: this.normalizeYear(numbers[1])
+          })
+        } else {
+          list.push({
+            prop: 'Year',
+            value: moment().format('YYYY')
+          })
+        }
+        this.parts = list
+      } else {
+        this.parts = []
       }
-      if (numbers && numbers.length > 0) {
-        list.push({
-          prop: 'Course Number',
-          value: numbers[0]
-        })
-      }
-      if (names && names.length > 1) {
-        list.push({
-          prop: 'Semester',
-          value: this.normalizeSemester(names[1])
-        })
-      }
-      if (numbers && numbers.length > 1) {
-        list.push({
-          prop: 'Year',
-          value: this.normalizeYear(numbers[1])
-        })
-      }
-      this.parts = list
     }
   }
 })
