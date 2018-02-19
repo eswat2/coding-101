@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coding 101</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet"
+          type="text/css">
+    <link href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css"
+          rel=stylesheet
+          type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.4/vue.js"
+          type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/85640850f4.js"
+            type="text/javascript"></script>
+    <!-- Google fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700"
+          rel="stylesheet"
+          type="text/css">
+    <style>
+      #app {
+        padding: 20px;
+        max-width: 600px;
+      }
+
+      input {
+        font-size: 20px;
+      }
+
+      .course {
+        font-weight: bold;
+        color: grey;
+      }
+
+      input::-webkit-input-placeholder {
+        color: #cccccc !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Course Input</span>
+        </div>
+        <input v-model="message" type="text" class="form-control" placeholder="cs101 fall 2016">
+        <div v-if="message.length > 0" class="input-group-append">
+          <span class="input-group-text" v-on:click="clear">
+            <i class="fa fa-times fa-lg"></i>
+            </span>
+        </div>
+      </div>
+      <ul>
+        <li v-bind:key="i" v-for="(i, item) in parts"><span class="course">{{ item.prop }}</span>: {{ item.value }}</li>
+      </ul>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
