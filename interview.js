@@ -125,5 +125,10 @@ enroll(joe, bio101)
 console.log(joe)
 
 const courseReport = (student) => {
-
+  const list = student.courses.sort((a, b) => { return a.year > b.year })
+  list.forEach((course) => {
+    console.log('-- ', course.department, course.courseNumber, course.year, course.semester)
+  })
 }
+
+courseReport(joe)
