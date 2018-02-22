@@ -18,15 +18,15 @@ const app = new Vue({
     clear: function() {
       this.message = ''
     },
+    labelFor: function(key) {
+      return LABELS[key]
+    },
     normalizeDepartment: function(input) {
       return input.toUpperCase()
     },
     normalizeYear: function(input) {
       const value = parseInt(input)
       return value > 2000 ? value : 2000 + value
-    },
-    labelFor: function(key) {
-      return LABELS[key]
     },
     normalizeSemester: function(input) {
       const value = input.toLowerCase().slice(0, 2)
