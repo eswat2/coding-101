@@ -1,5 +1,12 @@
 const regex1 = /[A-z]+/g
 const regex2 = /\d+/g
+
+const LABELS = {
+  courseNumber: 'Course Number',
+  department: 'Department',
+  semester: 'Semester',
+  year: 'Year'
+}
 // define
 const app = new Vue({
   el: '#app',
@@ -17,6 +24,9 @@ const app = new Vue({
     normalizeYear: function(input) {
       const value = parseInt(input)
       return value > 2000 ? value : 2000 + value
+    },
+    labelFor: function(key) {
+      return LABELS[key]
     },
     normalizeSemester: function(input) {
       const value = input.toLowerCase().slice(0, 2)
@@ -45,30 +55,30 @@ const app = new Vue({
         const list = []
         if (names && names.length > 0) {
           list.push({
-            prop: 'Department',
+            prop: 'department',
             value: this.normalizeDepartment(names[0])
           })
         }
         if (numbers && numbers.length > 0) {
           list.push({
-            prop: 'Course Number',
+            prop: 'courseNumber',
             value: numbers[0]
           })
         }
         if (names && names.length > 1) {
           list.push({
-            prop: 'Semester',
+            prop: 'semester',
             value: this.normalizeSemester(names[1])
           })
         }
         if (numbers && numbers.length > 1) {
           list.push({
-            prop: 'Year',
+            prop: 'year',
             value: this.normalizeYear(numbers[1])
           })
         } else {
           list.push({
-            prop: 'Year',
+            prop: 'year',
             value: moment().format('YYYY')
           })
         }
